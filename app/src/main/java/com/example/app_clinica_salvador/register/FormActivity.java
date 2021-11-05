@@ -141,7 +141,7 @@ public class FormActivity extends AppCompatActivity {
                     public void onSuccess(DocumentReference documentReference) {
                         new AlertDialog.Builder(FormActivity.this)
                                 .setTitle("Sucesso")
-                                .setMessage("O paciente foi cadastrado com sucesso!")
+                                .setMessage("O paciente foi cadastrado com sucesso!\nA situação do paciente é:"+situation)
                                 .setPositiveButton(android.R.string.yes, null)
                                 .show();
                     }
@@ -150,7 +150,7 @@ public class FormActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         new AlertDialog.Builder(FormActivity.this)
                                 .setTitle("Falha")
-                                .setMessage("Falha ao cadastrar o paciente."+e)
+                                .setMessage("Falha ao cadastrar o paciente.")
                                 .setPositiveButton(android.R.string.yes, null)
                                 .show();
                     }

@@ -81,17 +81,24 @@
             android:hint="Quantos dias de dor de cabeça?" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:text="Caso tenha vistado a: \n China\n Indonésia\n Itália\n Portugal\n EUA"
+        android:layout_marginTop="10dp"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_marginHorizontal="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_country"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Quantas semanas atrás?" />
+            android:hint="Há quantas semanas atrás foi a visita?" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
