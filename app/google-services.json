@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "516245541356",
+    "project_id": "clinica-salvador",
+    "storage_bucket": "clinica-salvador.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:516245541356:android:75a0b90fcdec960bf570c9",
+        "android_client_info": {
+          "package_name": "com.example.app_clinica_salvador"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "516245541356-e5nd1kjc0e41sl8psbvcl2g8s00uuor8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqMRVidsQ_PYWZVozggz33stdAFQ7Pdms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "516245541356-e5nd1kjc0e41sl8psbvcl2g8s00uuor8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

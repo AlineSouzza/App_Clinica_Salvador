@@ -1,5 +1,6 @@
 package com.example.app_clinica_salvador.register;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +13,14 @@ import android.widget.Button;
 
 import com.example.app_clinica_salvador.MainActivity;
 import com.example.app_clinica_salvador.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FormActivity extends AppCompatActivity {
 
@@ -23,6 +31,7 @@ public class FormActivity extends AppCompatActivity {
     private TextInputEditText inputHead;
     private TextInputEditText inputCountry;
     private Button buttonSend;
+
 
     private String name;
     private int age;
@@ -68,21 +77,22 @@ public class FormActivity extends AppCompatActivity {
     private boolean validade() {
         boolean pass = true;
 
-        if (inputName.getText().toString().equals("")) pass = false;
+        if (inputName.getText().toString().isEmpty()) pass = false;
+        else name = inputName.getText().toString();
 
-        if (inputAge.getText().toString().equals("")) pass = false;
+        if (inputAge.getText().toString().isEmpty()) pass = false;
         else age = Integer.parseInt(inputAge.getText().toString());
 
-        if (inputTemp.getText().toString().equals("")) pass = false;
+        if (inputTemp.getText().toString().isEmpty()) pass = false;
         else temp = Integer.parseInt(inputTemp.getText().toString());
 
-        if (inputCough.getText().toString().equals("")) cough = 0;
+        if (inputCough.getText().toString().isEmpty()) cough = 0;
         else cough = Integer.parseInt(inputCough.getText().toString());
 
-        if (inputHead.getText().toString().equals("")) head = 0;
+        if (inputHead.getText().toString().isEmpty()) head = 0;
         else head = Integer.parseInt(inputHead.getText().toString());
 
-        if (inputCountry.getText().toString().equals("")) country = 0;
+        if (inputCountry.getText().toString().isEmpty()) country = 0;
         else country = Integer.parseInt(inputCountry.getText().toString());
 
         return pass;
@@ -108,7 +118,43 @@ public class FormActivity extends AppCompatActivity {
             situation = "liberado";
         }
 
-        Log.d("TAG", situation);
+        saveUser();
 
     }
+
+    private void saveUser() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Map<String, Object> users = new HashMap<>();
+        users.put("name", name);
+        users.put("age", age);
+        users.put("temp", temp);
+        users.put("cough", cough);
+        users.put("head", head);
+        users.put("country", country);
+        users.put("situation", situation);
+
+        db.collection("users")
+                .add(users)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        new AlertDialog.Builder(FormActivity.this)
+                                .setTitle("Sucesso")
+                                .setMessage("O paciente foi cadastrado com sucesso!")
+                                .setPositiveButton(android.R.string.yes, null)
+                                .show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        new AlertDialog.Builder(FormActivity.this)
+                                .setTitle("Falha")
+                                .setMessage("Falha ao cadastrar o paciente."+e)
+                                .setPositiveButton(android.R.string.yes, null)
+                                .show();
+                    }
+                });
+    }
+
 }
